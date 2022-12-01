@@ -4,8 +4,14 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "utils.h"
+
+struct Result {
+    int part1;
+    int part2;
+};
 
 static char *read_input(const char *filename) {
     FILE *file = fopen(filename, "rb");
@@ -39,9 +45,11 @@ static char *read_input(const char *filename) {
 
 #define AOC_MAIN(day) \
     int main() { \
-        const char *input = read_input("./input.txt"); \
-        printf("Part 1: %d\n", part1(input)); \
-        printf("Part 2: %d\n", part2(input)); \
+        char *input = read_input("./input.txt"); \
+        struct Result result = solve(input); \
+        free(input); \
+        printf("Part 1: %d\n", result.part1); \
+        printf("Part 2: %d\n", result.part2); \
         return EXIT_SUCCESS; \
     } \
 
